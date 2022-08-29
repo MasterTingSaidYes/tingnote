@@ -18,7 +18,7 @@ export class AppController {
     console.log("444")
    })
     throw new Exction();
-    return this.appService.getHello();
+   
   }
 
 
