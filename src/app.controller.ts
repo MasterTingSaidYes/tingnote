@@ -1,12 +1,14 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, UseFilters, UseInterceptors } from '@nestjs/common';
 import { retry } from 'rxjs';
 import { AppService } from './app.service';
 import { Exction } from './note/note.error';
 import { NoteService } from './note/note.service';
-
+import { LoggingInterceptor } from './note/noteloggingInterceptor';
 @Controller("app")
 export class AppController {
-  constructor(private readonly appService: AppService,private readonly noteSercvice: NoteService) {}
+  constructor(private readonly appService: AppService,
+    private readonly noteSercvice: NoteService
+   ) {}
 
   @Get() 
   getHello(): string {
@@ -23,6 +25,7 @@ export class AppController {
 
 
   @Get("test")
+  //@UseInterceptors(LoggingInterceptor)
   async getTest(){
     let aa = await new Promise((re)=>{
       setImmediate(()=>{
@@ -36,4 +39,6 @@ export class AppController {
 
     return Date.now().toLocaleString()
   }
+
+
 }

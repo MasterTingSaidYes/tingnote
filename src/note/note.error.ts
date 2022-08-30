@@ -17,9 +17,8 @@ export class AllExceptionsFilter implements ExceptionFilter{
         
         console.log("1111111")
         return response.status(status).json({
-            code: HttpStatus.OK,
-            message: "请求成功",
-            path: request.url,
+           code:HttpStatus.NOT_FOUND,
+           message:"找不到"
         })
        
       
